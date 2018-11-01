@@ -57,6 +57,15 @@ def game_over(maze, x, y, direction):
         if direction == 4:
             return maze[x][y+1] == 3
 
+def load(filename, maze):
+    file = open(filename, "r")
+    text = fichier.read()
+    line_list = text.split("\n")
+    for x in range(1,len(line_list)):
+        value_list = line_list[x].split(",")
+        for y in range(1,len(value_list)):
+            maze[x][y] = value_list[y]
+
 walls(maze)
 run = True
 while run:
