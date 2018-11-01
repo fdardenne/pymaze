@@ -60,35 +60,55 @@ while run:
             if not obstacle(maze,x,y, 3):
                 if game_over(maze,x,y,3):
                     run = false
-                maze[x][y] = 0
-                y-=1
-                maze[x][y] = 1
-                pygame.time.delay(10)
+                else:
+                    maze[x][y] = 0
+                    y-=1
+                    maze[x][y] = 1
+                    pygame.time.delay(10)
 
         elif keys[pygame.K_DOWN]:
             if not obstacle(maze,x,y, 4):
-                maze[x][y] = 0
-                y+=1
-                maze[x][y] = 1
-                pygame.time.delay(10)
+                if game_over(maze,x,y,4):
+                    run = False
+                else:
+                    maze[x][y] = 0
+                    y+=1
+                    maze[x][y] = 1
+                    pygame.time.delay(10)
 
         elif keys[pygame.K_LEFT]:
             if not obstacle(maze,x,y,2):
-                maze[x][y] = 0
-                x-=1
-                maze[x][y] = 1
-                pygame.time.delay(10)
+                if game_over(maze,x,y,2):
+                    run = False
+                else:
+                    maze[x][y] = 0
+                    x-=1
+                    maze[x][y] = 1
+                    pygame.time.delay(10)
 
         elif keys[pygame.K_RIGHT]:
             if not obstacle(maze,x,y, 1):
-                maze[x][y] = 0
-                x+=1
-                maze[x][y] = 1
-                pygame.time.delay(10)
+                if game_over(maze,x,y,1):
+                    run = False
+                else:
+                    maze[x][y] = 0
+                    x+=1
+                    maze[x][y] = 1
+                    pygame.time.delay(10)
 
-
+    pygame.display.update()
 
         #2:UP 3:DOWN 1:LEFT 0:RIGHT
 
-    pygame.display.update()
+
+
+maze    = numpy.zeros(shape=(10,10)) + 3
+draw_board(maze, pygame, square)
+font = pygame.font.SysFont("comicsansms", 72)
+text = font.render("Game Over", True, (0,0,0))
+win.blit(text, (350-130, 350-72))
+
+pygame.display.update()
+pygame.time.delay(1000)
+
 pygame.quit()
