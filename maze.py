@@ -26,6 +26,16 @@ def draw_board (maze, pygame,square):
             if maze[x][y] == 3:
                 pygame.draw.rect(win, (255,0,0), (x*square,y*square,square,square))
 
+def walls(maze):
+    for x in range(len(maze)):
+        maze[x][0] = 2
+    for y in range(len(maze)):
+        maze[0][y] = 2
+    for x2 in range(len(maze)):
+        maze[x2][len(maze)-1] = 2
+    for y2 in range(len(maze)):
+        maze[len(maze)-1][y2] = 2
+
 def obstacle (maze, x, y, direction):
     if direction == 1:
         return maze[x+1][y] == 2
@@ -47,10 +57,11 @@ def game_over(maze, x, y, direction):
         if direction == 4:
             return maze[x][y+1] == 3
 
-
+walls(maze)
 run = True
 while run:
     draw_board(maze, pygame, square)
+
     pygame.time.delay(10)
     keys = pygame.key.get_pressed()
     for event in pygame.event.get():
