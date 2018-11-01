@@ -4,16 +4,16 @@ pygame.init()
 win = pygame.display.set_mode((700,700))
 pygame.display.set_caption("PySnake")
 
-maze = numpy.zeros(shape = (10,10))
-x = 0
+maze = numpy.zeros(shape = (20,20))
+x = 1
 y = 4
 maze[x][y] = 1
-square = 70
+square = 35
 
 #Creation d'obstacle
-for y_case in range(9):
+for y_case in range(8):
     maze[3][y_case] = 2
-maze[9][9] = 3
+maze[8][8] = 3
 
 def draw_board (maze, pygame,square):
     pygame.draw.rect(win, (0,0,0), (0,0,700,700))
@@ -70,7 +70,7 @@ while run:
         if keys[pygame.K_UP]:
             if not obstacle(maze,x,y, 3):
                 if game_over(maze,x,y,3):
-                    run = false
+                    run = False
                 else:
                     maze[x][y] = 0
                     y-=1
@@ -113,7 +113,7 @@ while run:
 
 
 
-maze    = numpy.zeros(shape=(10,10)) + 3
+maze    = numpy.zeros(shape=(20,20)) + 1
 draw_board(maze, pygame, square)
 font = pygame.font.SysFont("comicsansms", 72)
 text = font.render("Game Over", True, (0,0,0))
